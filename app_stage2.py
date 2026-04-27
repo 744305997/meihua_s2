@@ -555,6 +555,8 @@ with col_btn1:
                 for i in range(5): baseline[i] -= 0.05
             if gender == '男': baseline[4] += 0.03; baseline[1] -= 0.02
             else: baseline[0] += 0.03; baseline[1] += 0.02; baseline[2] -= 0.02
+            fusion_vec = engine.fuse_diagnosis()
+            baseline = [baseline[i] + fusion_vec[i] for i in range(5)]
             engine.initial_energy = baseline
             engine.history = [baseline.copy()]
             engine.output_sequence = []
@@ -610,6 +612,8 @@ with col_btn2:
             for i in range(5): baseline[i] -= 0.05
         if gender == '男': baseline[4] += 0.03; baseline[1] -= 0.02
         else: baseline[0] += 0.03; baseline[1] += 0.02; baseline[2] -= 0.02
+        fusion_vec = engine.fuse_diagnosis()
+        baseline = [baseline[i] + fusion_vec[i] for i in range(5)]
         engine_cont.initial_energy = baseline
         engine_cont.history = [baseline.copy()]
         engine_cont.output_sequence = []
